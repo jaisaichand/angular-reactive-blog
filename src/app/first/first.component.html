@@ -1,0 +1,32 @@
+<div>
+    <h1 style="text-align: center;">Reactive forms using form group</h1>
+    <p>{{1646607892243|date}}</p>
+    <div>{{theText}}</div>
+    <select  [(ngModel)]="langVal" >
+        <option value="tel">telugu</option>
+        <option value="eng">english</option>
+    </select>
+    <div [innerHtml]="theText|urlify"></div>
+    <div class="mainContainer">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)" >
+            <div class="formcontrolcontainer">
+                <label >Enter name</label>
+                <input type="text" formControlName="name" />
+                <span *ngIf="registerForm.controls.name.touched&&registerForm.controls.name.status=='INVALID'">Please enter valid values</span>
+            </div>
+    
+            <div class="formcontrolcontainer">
+                <label >Enter surname(optional)</label>
+                <input type="text" formControlName="surname" />
+            </div>
+    
+            <div class="formcontrolcontainer">
+                <label >{{'Enter email'|langchange:langVal}}</label>
+                <input type="text" formControlName="email" />
+                <span *ngIf="registerForm.controls.email.touched&&registerForm.controls.email.status=='INVALID'">Please enter valid values</span>
+            </div>
+    
+            <button type="submit">{{'submit'|langchange:langVal}}</button>
+        </form>
+    </div>
+</div>
